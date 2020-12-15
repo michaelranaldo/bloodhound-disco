@@ -2,8 +2,6 @@
 
 Get turnt.
 
-
-
 ## Cyphers
 
 Bloodhound uses `neo4j` to store data and retrieve paths. `neo4j` uses `Cypher` to construct these queries.
@@ -43,8 +41,16 @@ MATCH (H:Computer) WHERE H.operatingsystem =~ '.*(2000|2003|2008|xp|vista|7|me)*
 ### Match user accounts which have not logged in in over 90 days
 
 ```cypher
-MATCH (u:User) WHERE u.lastlogon < (datetime().epochseconds - (90 * 86400)) and NOT u.lastlogon IN [-1.0, 0.0] RETURN u.name
+MATCH (u:User) WHERE u.lastlogon < (datetime().epochseconds - (90 * 86400)) and NOT u.lastlogon IN [-1.0, 0.0] RETURN u
 ```
+
+### Match Domain Admins with active sessions
+
+```cypher
+MATCH (u:User)
+```
+
+
 
 ## Evidencing
 
@@ -54,5 +60,17 @@ MATCH (u:User) WHERE u.lastlogon < (datetime().epochseconds - (90 * 86400)) and 
 
 ```cypher
 MATCH (u:User) WHERE u.lastlogon < (datetime().epochseconds - (90 * 86400)) and NOT u.lastlogon IN [-1.0, 0.0] RETURN count(u)
+```
+
+### Get all user with hasSPN set
+
+```cypher
+MATCH (u:User) WHERE u.hasspn = true return u.name
+```
+
+### Get all computers with hasLAPS enabled
+
+```cypher
+MATCH (u:Computer) WHERE u.haslaps = true return u.name
 ```
 
