@@ -74,3 +74,14 @@ MATCH (u:User) WHERE u.hasspn = true return u.name
 MATCH (u:Computer) WHERE u.haslaps = true return u.name
 ```
 
+### Match users with a populated SID history
+
+```cypher
+MATCH (u:User) WHERE u.sidhistory <> [] RETURN u.name, u.sidhistory
+```
+
+### Match users with a populated SID history containing high-privilege accounts
+
+```cypher
+MATCH (u:User) WHERE u.sidhistory <> [] AND u.sidhistory =~ ".*-500" RETURN u.name, u.sidhistory
+```
