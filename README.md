@@ -85,3 +85,8 @@ MATCH (u:User) WHERE u.sidhistory <> [] RETURN u.name, u.sidhistory
 ```cypher
 MATCH (u:User) WHERE u.sidhistory <> [] AND ANY(item IN u.sidhistory WHERE item =~ '.*-(500|502|512|516|517|518|519|520|553|544|547|548|549|550|551|552|553|554|555|556|557|558|559|560|561|562|569|573|574|575|576|577|578|579|580)') RETURN u.name, u.sidhistory
 ```
+### Match users where admincount is set
+
+```cypher
+MATCH (u:User) WHERE u.admincount = true RETURN u.name, u.admincount
+```
