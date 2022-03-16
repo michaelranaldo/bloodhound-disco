@@ -13,7 +13,7 @@ Bloodhound uses `neo4j` to store data and retrieve paths. `neo4j` uses `Cypher` 
 ```cypher
 MATCH (u:User)
 WHERE u.owned = True
-MATCH (n {highvalue:true}),p=shortestPath((u)-[r:SQLAdmin|ExecuteDCOM|CanRDP|CanPSRemote|AdminTo*1..]->(n))
+MATCH (n {owned:false}),p=shortestPath((u)-[r:SQLAdmin|ExecuteDCOM|CanRDP|CanPSRemote|AdminTo*1..]->(n))
 RETURN p
 ```
 
