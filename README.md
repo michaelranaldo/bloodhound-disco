@@ -90,3 +90,8 @@ MATCH (u:User) WHERE u.sidhistory <> [] AND ANY(item IN u.sidhistory WHERE item 
 ```cypher
 MATCH (u:User) WHERE u.admincount = true RETURN u.name, u.admincount
 ```
+
+### Match users who are members of cloud groups
+```cypher
+MATCH p=(n:User)-[r:MemberOf*1..]->(m:Group) WHERE m.name =~ ".*([Aa][Ww][Ss]|[Aa]zure|[Aa][Zz]|[Gg][Cc][Pp]).*" RETURN p
+```
