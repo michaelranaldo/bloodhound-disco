@@ -91,7 +91,10 @@ MATCH (u:User) WHERE u.sidhistory <> [] AND ANY(item IN u.sidhistory WHERE item 
 MATCH (u:User) WHERE u.admincount = true RETURN u.name, u.admincount
 ```
 
-### Match users who are members of cloud groups
+### Match users who may be related to cloud activities
+
+> This is a long running pig of a query
+
 ```cypher
-MATCH p=(n:User)-[r:MemberOf*1..]->(m:Group) WHERE m.name =~ ".*([Aa][Ww][Ss]|[Aa]zure|[Aa][Zz]|[Gg][Cc][Pp]).*" RETURN p
+MATCH p=(u:User)-[r:MemberOf*1..]->(m:Group) WHERE m.name =~ ".*([Aa][Ww][Ss]|[Aa]zure|[Aa][Zz]|[Gg][Cc][Pp]).*" OR u.name =~ ".*([Aa][Ww][Ss]|[Aa]zure|[Aa][Zz]|[Gg][Cc][Pp]).*" RETURN p
 ```
