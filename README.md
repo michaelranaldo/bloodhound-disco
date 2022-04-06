@@ -35,7 +35,7 @@ MATCH (u:User) WHERE u.description =~ ".*" return u
 ### Get any outdated system
 
 ```cypher
-MATCH (H:Computer) WHERE H.operatingsystem =~ '.*(2000|2003|2008|xp|vista|7|me)*.' RETURN H
+MATCH (H:Computer) WHERE H.operatingsystem =~ '.*(2000|2003|2008|xp|vista|7|me).*' RETURN H
 ```
 
 ### Match user accounts which have not logged in in over 90 days
